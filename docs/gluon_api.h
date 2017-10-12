@@ -5,10 +5,6 @@
  * \param out_array the output operator name array.
  * \return 0 when success, -1 when failure happens
  */
-// MS: nn_uint?
-// Mu: the definition is 
-// typedef unsigned int nn_uint;
-// Also agree that the name is confusing. maybe change to uint32_t
 int GLListAllOpNames(nn_uint *out_size,
                      const char*** out_array);
 /*!
@@ -31,8 +27,6 @@ int GLGetOpHandle(const char* op_name,
  * \param out the returning handle
  * \return 0 when success, -1 when failure happens
  */
-// MS: Need element data type?
-// Mu: Yes, need to add "int dtype"
 int GLNDArrayCreate(const uint32_t *shape,
                     uint32_t ndim,
                     int dev_type,
@@ -57,8 +51,6 @@ int GLNDArrayFree(NDArrayHandle handle);
  * \param param_vals values for keyword parameters
  * \return 0 when success, -1 when failure happens
  */
-// MS: creator -> opHandle?
-// Mu: LGTM
 int GLImperativeInvoke(OpHandle creaor,
                        int num_inputs,
                        NDArrayHandle *inputs,
@@ -112,9 +104,6 @@ int GLNDArrayGetShape(NDArrayHandle handle,
  * \param out_dev_id the output device id
  * \return 0 when success, -1 when failure happens
  */
-// MS: Since it is specific to device context, could we make it
-// clear by naming it GLNDArrayGetDeviceContext?
-// Mu: LGTM
 int GLNDArrayGetContext(NDArrayHandle handle,
                         int *out_dev_type,
                         int *out_dev_id);
@@ -210,9 +199,6 @@ int GLAutogradMarkVariables(uint32_t num_var,
  * \param is_train whether to do backward for training or inference
  * \return 0 when success, -1 when failure happens
  */
-MS: incomplete doc? Do we need is_train and why? A bit more description
-is appreciated. Why need grad_stypes? I think we are doing
-grad_handles = Grad(output_handles, var_handles). What is the use of ograd_handles? 
 int GLAutogradBackward(uint32_t num_output,
                        NDArrayHandle *output_handles,
                        NDArrayHandle *ograd_handles,
@@ -235,8 +221,6 @@ int GLAutogradBackward(uint32_t num_output,
  * \param out pointer to the created symbol handle
  * \return 0 when success, -1 when failure happens
  */
-// MS: creator -> opHandle?
-// Mu: LGTM
 int GLSymbolCreate(OpHandle creator,
                    uint32_t num_param,
                    const char **keys,
@@ -274,10 +258,6 @@ int GLSymbolCompose(SymbolHandle sym,
  * \param out_str_array pointer to hold the output string array
  * \return 0 when success, -1 when failure happens
  */
-// MS: Could you explain how this is used in Gluon? Why outputs not inputs?
-// Mu: The Symbol interface is used after `hybridize` is called. 
-// out_size means the output size of this function, which is the 
-// number of list arguments in this symbol.
 int GLSymbolListArguments(SymbolHandle symbol,
                           uint32_t *out_size,
                           const char ***out_str_array);
@@ -287,14 +267,6 @@ int GLSymbolListArguments(SymbolHandle symbol,
  * \param out The output symbol whose outputs are all the internals.
  * \return 0 when success, -1 when failure happens
  */
-// MS: Could you explain "all the internals"? Again, it would be useful to
-// explain how this is used in Gluon.
-// Mu: In default a symbol only have outputs available to users. To access the 
-// output of an internal layer, one need to construct a new symbol with the internal layer
-// as the output. 
-// Assume there is a net with dense + softmax. If I just want to have the dense output, 
-// then I call GLSymbolGetInterls(), which returns a new symbol outputs both dense and softmax, 
-// denote by net2. Then net2[0] is the symbol only outputs dense. (and net2[1] == net)
 int GLSymbolGetInternals(SymbolHandle symbol,
                          SymbolHandle *out);
 /*!
@@ -304,8 +276,6 @@ int GLSymbolGetInternals(SymbolHandle symbol,
  * \param out The output symbol whose outputs are the index-th symbol.
  * \return 0 when success, -1 when failure happens
  */
-// MS: Again what is the real use of it?
-// Mu: This is used by net2[0] on the above example
 int GLSymbolGetOutput(SymbolHandle symbol,
                       uint32_t index,
                       SymbolHandle *out);
@@ -317,14 +287,6 @@ int GLSymbolGetOutput(SymbolHandle symbol,
  * \param handle symbolic graph
  * \param out created cached op
  */
-// MS: Do we always have to create a cached op to execute a symbol?
-// MS: Can we use a better name than cached op, for example function?
-// Mu: Noop. Operator often means an atomic operator such as dot and convolution. 
-// CachedOp is for converting a symbol, which may contain multiple atomic operators, 
-// into a "big" operator. It can reduce the overhead to optimize this symbol again and again. 
-// For example, "dense" is normal normal op, then the symbol for
-// "dense + relu + conv + relu" can be created as a cached op. 
-// I think it is used to improve performance, it should be ok to not support cached op.  
 int GLCreateCachedOp(SymbolHandle handle,
                      CachedOpHandle *out);
 
