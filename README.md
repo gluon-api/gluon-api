@@ -71,7 +71,7 @@ Running the training is fairly typical and all the while using Gluon's functiona
 ```python
 epochs = 10
 for e in range(epochs):
-    for i, batch in enumerate(train_data):
+    for i, (data, label) in enumerate(train_data):
         data = data.as_in_context(mx.cpu()).reshape((-1, 784))
         label = label.as_in_context(mx.cpu())
         with autograd.record(): # Start recording the derivatives
