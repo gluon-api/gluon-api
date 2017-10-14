@@ -20,7 +20,7 @@ The Gluon API specification is an effort to improve speed, flexibility, and acce
 * [Backend C API](https://github.com/gluon-api/gluon-api/blob/master/docs/gluon_api.h)
 
 ## Getting Started with the Gluon Interface
-The Gluon specification has already been implemented in Apache MXNet, so you can start using the Gluon interface by following these easy steps for [installing the latest version of MXNet](https://mxnet.incubator.apache.org/get_started/install.html). We recommend using Python version 3.3 or greater and implementing this example using a [Jupyter notebook](http://jupyter.readthedocs.io/en/latest/install.html). Setup of Jupyter is included in the MXNet installation instructions. For our example we’ll walk through how to build and train a simple two-layer neural network, called a [multilayer perceptron](http://thestraightdope.mxnet.io/chapter03_deep-neural-networks/mlp-gluon.html).
+The Gluon specification has already been implemented in Apache MXNet, so you can start using the Gluon interface by following these easy steps for [installing the latest master version of MXNet](https://mxnet.incubator.apache.org/versions/master/install/index.html). We recommend using Python version 3.3 or greater and implementing this example using a [Jupyter notebook](http://jupyter.readthedocs.io/en/latest/install.html). Setup of Jupyter is included in the MXNet installation instructions. For our example we’ll walk through how to build and train a simple two-layer neural network, called a [multilayer perceptron](http://thestraightdope.mxnet.io/chapter03_deep-neural-networks/mlp-gluon.html).
 
 First, import `mxnet` and MXNet's implementation of the `gluon` specification. We will also need `autograd`, `ndarray`, and `numpy`.
 
