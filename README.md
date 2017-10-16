@@ -61,7 +61,7 @@ net.collect_params().initialize(mx.init.Normal(sigma=0.05))
 # We opt to use softmax cross entropy loss function to measure how well the # model is able to predict the correct answer
 softmax_cross_entropy = gluon.loss.SoftmaxCrossEntropyLoss()
 
-# We opt to use the stochastic gradient descent (sgd) training algothrim
+# We opt to use the stochastic gradient descent (sgd) training algorithm
 # and set the learning rate hyperparameter to .1
 trainer = gluon.Trainer(net.collect_params(), 'sgd', {'learning_rate': .1})
 ```
