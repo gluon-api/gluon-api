@@ -75,7 +75,7 @@ Dataset utilities.
 
    A dataset with a data array and a label array.
 
-   The i-th sample is *(data[i], lable[i])*.
+   The i-th sample is *(data[i], label[i])*.
 
    :Parameters:
       * **data** (*array-like object*) -- The data array. Can be NDArray
