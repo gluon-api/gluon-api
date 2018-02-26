@@ -118,9 +118,6 @@ int GLNDArrayGetDType(NDArrayHandle handle,
 /*!
  * \brief get the storage type of the array. kDense, kSparse, kRagged, etc.
  */
-// MS: How do we get the storage_type set in the first place?
-// MS: Do we need functions to create sparse or ragged tensors?
-// Mu: Yes, we need to have new functions to create Sparse and Ragged arrays.
 int GLNDArrayGetStorageType(NDArrayHandle handle,
                             int *out_storage_type);
 /*!
