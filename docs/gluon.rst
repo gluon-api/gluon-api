@@ -583,7 +583,7 @@ allow_deferred_init=False, differentiable=True)**
 
    Construct block from symbol. This is useful for using pre-trained
    models as feature extractors. For example, you may want to extract
-   get the output from fc2 layer in AlexNet.
+   the output from fc2 layer in AlexNet.
 
    :Parameters:
       * **outputs** (`Symbol
